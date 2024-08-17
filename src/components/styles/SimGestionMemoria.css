@@ -1,0 +1,10 @@
+.tabla-memoria {
+    border-collapse: collapse;
+    width: 200px;
+}
+
+.tabla-memoria th, .tabla-memoria td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
