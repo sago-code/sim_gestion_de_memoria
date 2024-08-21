@@ -1,10 +1,125 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerFormsYtable {
+    margin-right: 40pc;
+    height: 63px;
+    width: 244px;
+}
+
 .tabla-memoria {
     border-collapse: collapse;
     width: 200px;
+}
+
+.tabla-procesos {
+    border-collapse: collapse;
+    width: 600px;
 }
 
 .tabla-memoria th, .tabla-memoria td {
     border: 1px solid black;
     padding: 8px;
     text-align: center;
+}
+
+.tabla-procesos th, .tabla-procesos td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+}
+
+.inputBox1 {
+    position: relative;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.inputBox2 {
+    position: relative;
+    width: 200px;
+}
+
+.divFormContainer {
+    display: flex;
+}
+
+.procesoYTamañoInput {
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    border-bottom: 3px solid #ccc;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.procesoYTamañoLabel {
+    position: absolute;
+    right: 50%;
+    padding: 10px 5px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.4rem;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.procesoYTamañoInput:valid ~ label,
+.procesoYTamañoInput:focus ~ label {
+    transform: translateY(-1.5rem);
+    color: rgb(162, 162, 198);
+    font-size: 0.75em;
+}
+
+.botonEnviar {
+    margin-left: 7%;
+    height: 47px;
+    width: 72px;
+    border: 1px;
+    background: #4aa4f1;
+    cursor: pointer;
+    border-radius: 6px;
+    color: white;
+}
+
+.botonEnviar:hover {
+    background: #3479b6;
+}
+
+.containerTablaProcs {
+    margin-top: 30px;
+}
+
+.tabla-tarjeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarjeta {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px;
+    border-radius: 8px 8px 0 0;
+    margin: -16px -16px 16px -16px;
+}
+
+.tarjeta-body p {
+    margin: 8px 0;
 }

@@ -11,33 +11,72 @@ const datosMemoria = [
 ];
 
 export function SimGestionMemoria() {
-    return(
+    return (
         <Fragment>
-            <div>
-                <form>
-                    <div>
-                        <text>Proceso</text>
-                        <input
-                            placeholder: "tarea, programa o proceso"
-                        />
-                        <button>Enviar</button> 
+            <div className="container">
+                <div className="containerFormsYtable">
+                    <form>
+                        <div className="divFormContainer">
+                            <div className="inputBox1">
+                                <input
+                                    className="procesoYTamañoInput"
+                                    type="text"
+                                    required
+                                />
+                                <label className="procesoYTamañoLabel">Proceso</label>
+                            </div>
+                            <div className="inputBox2"> 
+                                <input
+                                    className="procesoYTamañoInput"
+                                    required
+                                />
+                                <label className="procesoYTamañoLabel">tamaño</label>
+                            </div>
+                            <button className="botonEnviar">Enviar</button> 
+                        </div>
+                    </form>
+
+                    <div className="containerTablaProcs">
+                        <table className="tabla-procesos">
+                            <thead>
+                                <tr>
+                                    <th>nombre del proceso</th>
+                                    <th>tamaño del proceso</th>
+                                    <th>ubicacion del proceso</th>
+                                    <th>tamaño de la pagina</th>
+                                    <th>fragmentacion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>word</td>
+                                    <td>20KB</td>
+                                    <td>pagina 1</td>
+                                    <td>50KB</td>
+                                    <td>30KB</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </form>
-            <div>
-            <table className="tabla-memoria">
-                <thead>
-                    <tr>
-                        <th>Sistema Operativo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {datosMemoria.map((fila, index) => (
-                    <tr key={index}>
-                        <td>{fila.tamaño}</td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
+                </div>
+
+                <div>
+                    <table className="tabla-memoria">
+                        <thead>
+                            <tr>
+                                <th>Sistema Operativo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {datosMemoria.map((fila, index) => (
+                            <tr key={index}>
+                                <td>{fila.tamaño}</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </Fragment>
     );
 }
