@@ -1,0 +1,15 @@
+.ThemeToggle {
+    background: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+
+.sol {
+    height: 50px;
+    width: 50px;
+}
+
+.luna {
+    height: 50px;
+    width: 50px;
+}

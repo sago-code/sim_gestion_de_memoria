@@ -1,10 +1,13 @@
 .container {
     display: flex;
+    background-color: var(--background-light);
+    flex-direction: row;
     justify-content: space-between;
+    margin-top: 4%;
 }
 
 .containerFormsYtable {
-    margin-right: 40pc;
+    margin-left: 4%;
     height: 63px;
     width: 244px;
 }
@@ -12,6 +15,7 @@
 .tabla-memoria {
     border-collapse: collapse;
     width: 200px;
+    margin-left: -26%;
 }
 
 .tabla-procesos {
@@ -20,13 +24,13 @@
 }
 
 .tabla-memoria th, .tabla-memoria td {
-    border: 1px solid black;
+    border: 1px solid var(--foreground-light); 
     padding: 8px;
     text-align: center;
 }
 
 .tabla-procesos th, .tabla-procesos td {
-    border: 1px solid black;
+    border: 1px solid var(--foreground-light); 
     padding: 8px;
     text-align: center;
 }
@@ -35,13 +39,7 @@ form {
     display: flex;
 }
 
-.inputBox1 {
-    position: relative;
-    width: 200px;
-    margin-right: 20px;
-}
-
-.inputBox2 {
+.inputBox1, .inputBox2 {
     position: relative;
     width: 200px;
 }
@@ -54,10 +52,10 @@ form {
     width: 100%;
     padding: 5px 0;
     border: none;
-    border-bottom: 3px solid #ccc;
+    border-bottom: 3px solid var(--foreground-light); 
     outline: none;
     background: transparent;
-    color: #fff;
+    color: var(--foreground-light); 
     font-size: 1.8rem;
 }
 
@@ -65,7 +63,7 @@ form {
     position: absolute;
     right: 50%;
     padding: 10px 5px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(17, 17, 17, 0.5);
     font-size: 1.4rem;
     pointer-events: none;
     transition: 0.5s;
@@ -83,14 +81,14 @@ form {
     height: 47px;
     width: 72px;
     border: 1px;
-    background: #4aa4f1;
+    background: var(--foreground-light);
     cursor: pointer;
     border-radius: 6px;
-    color: white;
+    color: var(--background-light);
 }
 
 .botonEnviar:hover {
-    background: #3479b6;
+    background: var(--foreground-dark);
 }
 
 .containerTablaProcs {
@@ -104,8 +102,8 @@ form {
 }
 
 .tarjeta {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: var(--background-light); 
+    border: 1px solid var(--foreground-light); 
     border-radius: 8px;
     padding: 16px;
     width: 250px;
@@ -113,8 +111,8 @@ form {
 }
 
 .tarjeta-header {
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--foreground-light); 
+    color: var(--background-light); 
     padding: 8px;
     border-radius: 8px 8px 0 0;
     margin: -16px -16px 16px -16px;
@@ -137,8 +135,8 @@ form {
     z-index: 1000;
 }
 
-.modal-content {
-    background: white;
+.modal-content, .modal-partitions {
+    background: var(--background-light);
     padding: 20px;
     border-radius: 5px;
     position: relative;
@@ -159,9 +157,10 @@ form {
     width: 50px;
     aspect-ratio: 1;
     display: grid;
-  }
-  .loader::before,
-  .loader::after {    
+}
+
+.loader::before,
+.loader::after {    
     content:"";
     grid-area: 1/1;
     --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
@@ -172,14 +171,65 @@ form {
       var(--c) 0    50%;
     background-size: 12px 12px;
     animation: l12 1s infinite;
-  }
-  .loader::before {
+}
+
+.loader::before {
     margin: 4px;
     filter: hue-rotate(45deg);
     background-size: 8px 8px;
-    animation-timing-function: linear
-  }
-  
-  @keyframes l12 { 
+    animation-timing-function: linear;
+}
+
+@keyframes l12 { 
     100%{transform: rotate(.5turn)}
-  }
+}
+
+.dark-mode .container {
+    background-color: var(--background-dark);
+}
+
+.dark-mode .inputBox1, .dark-mode .inputBox2 {
+    color: var(--foreground-dark); 
+}
+
+.dark-mode .procesoYTamañoInput {
+    border-bottom: 3px solid var(--foreground-dark); /* Usa variable para el borde */
+    color: var(--foreground-dark); /* Usa variable para el texto */
+}
+
+.dark-mode .procesoYTamañoLabel {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .botonEnviar {
+    background: var(--foreground-dark); /* Usa variable para el fondo */
+    color: var(--background-dark); /* Usa variable para el texto */
+}
+
+.dark-mode .botonEnviar:hover {
+    background: var(--foreground-light); /* Usa variable para el hover */
+}
+
+.dark-mode .tarjeta {
+    background-color: var(--background-dark); /* Usa variable para el fondo */
+    border: 1px solid var(--foreground-dark); /* Usa variable para el borde */
+}
+
+.dark-mode .tarjeta-header {
+    background-color: var(--foreground-dark); /* Usa variable para el fondo */
+    color: var(--background-dark); /* Usa variable para el texto */
+}
+
+.dark-mode .modal-content, .dark-mode .modal-partitions {
+    background: var(--background-dark); /* Usa variable para el fondo */
+    color: var(--foreground-dark); /* Usa variable para el texto */
+}
+
+.dark-mode .loader::before, .dark-mode .loader::after {
+    --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000); /* Puede ajustar según sea necesario */
+}
+
+.papelera {
+    height: 21px;
+    cursor: pointer;
+}
