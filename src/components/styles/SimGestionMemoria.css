@@ -59,6 +59,18 @@ form {
     font-size: 1.8rem;
 }
 
+
+.selectMedida {
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    border-bottom: 3px solid var(--foreground-light); 
+    outline: none;
+    background: transparent;
+    color: var(--foreground-light); 
+    font-size: 1.8rem;
+}
+
 .procesoYTamañoLabel {
     position: absolute;
     right: 50%;
@@ -197,6 +209,15 @@ form {
     color: var(--foreground-dark); /* Usa variable para el texto */
 }
 
+.dark-mode .selectMedida {
+    border-bottom: 3px solid var(--foreground-dark); /* Usa variable para el borde */
+    color: var(--foreground-dark);
+}
+
+.dark-mode .selectMedida option {
+    color: black;
+}
+
 .dark-mode .procesoYTamañoLabel {
     color: rgba(255, 255, 255, 0.5);
 }
@@ -229,7 +250,14 @@ form {
     --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000); /* Puede ajustar según sea necesario */
 }
 
-.papelera {
-    height: 21px;
-    cursor: pointer;
+.dark-mode .tabla-procesos th, .tabla-procesos td {
+    border: 1px solid var(--foreground-dark); 
+    padding: 8px;
+    text-align: center;
+}
+
+.dark-mode .tabla-memoria th, .tabla-memoria td {
+    border: 1px solid var(--foreground-dark); 
+    padding: 8px;
+    text-align: center;
 }

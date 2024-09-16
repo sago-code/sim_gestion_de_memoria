@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import Modal from 'react-modal';
 import '../styles/SimGestionMemoria.css';
-import papeleraNegra from '../../images/papelera.png';
 import axios from 'axios';
 
 Modal.setAppElement('#root');
@@ -260,15 +259,11 @@ export function SimGestionMemoria() {
     };
 
     const asignarProceso = async (proceso) => { 
-        console.log("Proceso:", proceso);
-        console.log("Selected Ajuste ID:", selectedAjuste.id);
     
         const particionesDisponibles = particiones.filter(particion => particion.estado === 0);
-        console.log("Particiones Disponibles:", particionesDisponibles);
     
         let particionAsignada = null;
         const tamañoProcesoBytes = convertirABytes(proceso.tamaño, proceso.unidad_medida);
-        console.log("Tamaño Proceso en Bytes:", tamañoProcesoBytes);
     
         switch (selectedAjuste.id) {
             case 1: // Primer Ajuste
@@ -283,11 +278,13 @@ export function SimGestionMemoria() {
                         convertirABytes(particion.tamaño, particion.unidad_medida) >= tamañoProcesoBytes
                     )
                     .reduce((prev, curr) => {
+                        if (!prev) return curr; // Si prev es null, devolver curr
                         console.log("Comparando (Mejor Ajuste): Prev:", prev, "Curr:", curr);
                         return convertirABytes(prev.tamaño, prev.unidad_medida) < convertirABytes(curr.tamaño, curr.unidad_medida) ? prev : curr;
                     }, null);
+            
                 console.log("Particion Asignada (Mejor Ajuste):", particionAsignada);
-                break;
+            break;
             case 3: // Peor Ajuste
                 const particionesAdecuadas = particionesDisponibles.filter(particion =>
                     convertirABytes(particion.tamaño, particion.unidad_medida) >= tamañoProcesoBytes
@@ -315,8 +312,6 @@ export function SimGestionMemoria() {
                 return;
         }
     
-        console.log("Particion Asignada Final:", particionAsignada);
-    
         try {
             if (particionAsignada) {
                 // Crear asignación
@@ -343,7 +338,7 @@ export function SimGestionMemoria() {
     
                 setProcesos(prevProcesos =>
                     prevProcesos.map(p =>
-                        p.id === proceso.id ? { ...p, estado: 1 } : p
+                        p.id === proceso.id ? { ...p, estado: 1, prioridad: 0 } : p
                     )
                 );
     
@@ -390,7 +385,7 @@ export function SimGestionMemoria() {
             console.error('Error durante el proceso de asignación o cola:', error);
             alert('Error al procesar la asignación o cola.');
         }
-    };           
+    }; 
 
     const handleAddProceso = (event) => { 
         event.preventDefault();
@@ -428,7 +423,7 @@ export function SimGestionMemoria() {
         } else {
             setError("Todos los campos son obligatorios.");
         }
-    };      
+    };   
 
     return (
         <Fragment>
@@ -446,7 +441,6 @@ export function SimGestionMemoria() {
                 onClose={closeParticionesModal}
                 selectedAjuste={selectedAjuste}
             />
-            {console.log(procesos)}
             <div className="container">
                 <div className="containerFormsYtable">
                     <form onSubmit={handleAddProceso}>
@@ -476,7 +470,7 @@ export function SimGestionMemoria() {
                                 <select
                                     value={unidadMedida}
                                     onChange={handleSelectChange}
-                                    className="procesoYTamañoInput"
+                                    className="selectMedida"
                                     required
                                 >
                                     <option value="">Selecciona una unidad</option>
@@ -518,6 +512,7 @@ export function SimGestionMemoria() {
                                     const fragmentacionActual = convertirDeBytes(fragmentacionBytes, unidadMedida);
 
                                     const enCola = colaProcesos.some(p => p.proceso_id === proceso.id) ? 'Sí' : 'No';
+                                    console.log(procesos, "dasdsad")
                                     return (
                                         <tr key={index}>
                                             <td>{proceso.nombre}</td>
@@ -525,11 +520,6 @@ export function SimGestionMemoria() {
                                             <td>{tamañoParticionActual.toFixed(3)}{unidadMedida}</td>
                                             <td>{fragmentacionActual.toFixed(3)}{unidadMedida}</td>
                                             <td>{enCola}</td>
-                                            <td><img 
-                                                    className="papelera" src={papeleraNegra} 
-                                                    alt="Papelera"
-                                                />
-                                            </td>
                                         </tr>
                                     );
                                 }) : (
